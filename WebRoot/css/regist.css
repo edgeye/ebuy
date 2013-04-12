@@ -1,0 +1,30 @@
+.STYLE1 {
+	font-size: 12px;
+}
+
+.STYLE3 {
+	color: #FF0000;
+	font-size: 12px;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:active {
+	text-decoration: none;
+}
+
+.style66 {
+	font-size: 36px;
+	font-family: "¥¥“’ºÚ––ø¨";
+	color: #000099;
+}

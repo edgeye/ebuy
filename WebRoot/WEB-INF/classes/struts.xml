@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="gbk"></constant> 
+	
+	<!-- 前台管理配置 -->
+	<package name="customer" extends="json-default" namespace="/">
+	
+		<!-- 登录验证拦截器配置 -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="net.gupt.ebuy.interceptor.LoginInterceptor"></interceptor>
+		</interceptors>
+		
+		<!-- 定义全局处理结果 -->
+		<global-results>
+			<result name="validLogin">
+				/WEB-INF/common/valid1.jsp
+			</result>
+		</global-results>
+		
+		<!-- 加载商城首页请求 -->
+		<action name="main" class="net.gupt.ebuy.action.MainAction">
+			<result name="success">
+				/WEB-INF/index/index_.jsp
+			</result>
+		</action>
+		<!-- 首页搜索框商品搜索请求 -->
+		<action name="search" class="net.gupt.ebuy.action.MainAction" method="search">
+			<result name="success">
+				/WEB-INF/index/select_ok.jsp
+			</result>
+		</action>
+		<!-- 查看商品详情 -->
+		<action name="productDetail" class="net.gupt.ebuy.action.MainAction" method="productDetail">
+			<result name="success">
+				/WEB-INF/index/view_product.jsp
+			</result>
+		</action>
+		
+		<!-- 初始化注册页面 -->
+		<action name="initReg" class="net.gupt.ebuy.action.RegistAction">
+			<result name="success">
+				/WEB-INF/regist/registry.jsp
+			</result>
+		</action>
+		<!-- 提交用户注册信息 -->
+		<action name="submitReg" class="net.gupt.ebuy.action.RegistAction" method="submitReg">
+			<result name="success">
+				/WEB-INF/regist/reg_ok.jsp
+			</result>
+		</action>
+		<!-- 检查用户将要注册的用户名是否已被占用 -->
+		<action name="validName" class="net.gupt.ebuy.action.RegistAction" method="validName">
+		</action>
+		
+		<!-- 用户登录请求 -->
+		<action name="login" class="net.gupt.ebuy.action.LoginAction" method="login">
+			<!-- 登录成功后，重定向到首页 -->
+			<result name="success" type="redirectAction">
+				main
+			</result>
+			<result name="fail">
+				/WEB-INF/login/login_ok.jsp
+			</result>
+		</action>
+		<!-- 用户登出请求 -->
+		<action name="logout" class="net.gupt.ebuy.action.LoginAction" method="logout">
+			<!-- 登出成功后，重定向到首页 -->
+			<result name="success" type="redirectAction">
+				main
+			</result>
+		</action>
+		
+		<!-- 初始化用户修改个人资料页面 -->
+		<action name="updateInfo" class="net.gupt.ebuy.action.LoginAction" method="updateInfo">
+			<result name="success">
+				/WEB-INF/login/cust_update.jsp
+			</result>
+		</action>
+		<!-- 提交用户修改后的个人资料 -->
+		<action name="updateConfirm" class="net.gupt.ebuy.action.LoginAction" method="updateConfirm">
+			<result name="success">
+				/WEB-INF/login/cust_update_ok.jsp
+			</result>
+		</action>
+		
+		<!-- 初始化用户查询密码页面 -->
+		<action name="forgetPass" class="net.gupt.ebuy.action.ForgetPassAction" method="forgetPass">
+			<result name="success">
+				/WEB-INF/login/forget_pass.jsp
+			</result>
+		</action>
+		<!-- 提交用户查询密码的条件，并初始化用户回答验证问题的页面 -->
+		<action name="initPass" class="net.gupt.ebuy.action.ForgetPassAction" method="initPass">
+			<result name="success">
+				/WEB-INF/login/forget_pass2.jsp
+			</result>
+		</action>
+		<!-- 查询用户密码 -->
+		<action name="searchPass" class="net.gupt.ebuy.action.ForgetPassAction" method="searchPass">
+			<result name="success">
+				/WEB-INF/login/forget_pass3.jsp
+			</result>
+		</action>
+		
+		<!-- 加载意见反馈页面 -->
+		<action name="initMessage" class="net.gupt.ebuy.action.MessageAction" method="initMessage">
+			<!-- 调用登录验证拦截器，未登录的用户将不能够发表意见 -->
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">
+				/WEB-INF/message/message.jsp
+			</result>
+		</action>
+		<!-- 提交用户要反馈的意见 -->
+		<action name="submitMessage" class="net.gupt.ebuy.action.MessageAction" method="submitMessage">
+			<!-- 调用登录验证拦截器，未登录的用户将不能够发表意见 -->
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">
+				/WEB-INF/message/message2.jsp
+			</result>
+		</action>
+		
+		<!-- 点击购买按钮时，将商品添加到购物车 -->
+		<action name="buyProduct" class="net.gupt.ebuy.action.CartAction" method="buyProduct">
+		</action>
+		<!-- 查看购物车列表页面 -->
+		<action name="checkCart" class="net.gupt.ebuy.action.CartAction" method="checkCart">
+			<result name="success">
+				/WEB-INF/cart/my_cart.jsp
+			</result>
+		</action>
+		<!-- 修改购物车内商品数量 -->
+		<action name="updateQty" class="net.gupt.ebuy.action.CartAction" method="updateQty">
+		</action>
+		<!-- 清空购物车 -->
+		<action name="emptyCart" class="net.gupt.ebuy.action.CartAction" method="emptyCart">
+			<!-- 清空购物车后重定向到购物车列表页面 -->
+			<result name="success" type="redirectAction">
+				checkCart
+			</result>
+		</action>
+		<!-- 删除购物车内的商品 -->
+		<action name="delProduct" class="net.gupt.ebuy.action.CartAction" method="delProduct">
+			<!-- 删除购物车商品后重定向到购物车列表页面 -->
+			<result name="success" type="redirectAction">
+				checkCart
+			</result>
+		</action>
+		
+		<!-- 将购物车内商品提交结算 -->
+		<action name="checkout" class="net.gupt.ebuy.action.CartAction" method="checkout">
+			<result name="success">
+				/WEB-INF/cart/cart_checkout.jsp
+			</result>
+			<result name="fail">
+				/WEB-INF/cart/cart_null.jsp
+			</result>
+		</action>
+		<!-- 确认支付方式 -->
+		<action name="confirmPay" class="net.gupt.ebuy.action.PaymentAction" method="confirmPay">
+			<result name="success">
+				/WEB-INF/payment/payment.jsp
+			</result>
+		</action>
+		<!-- 最终确定订单 -->
+		<action name="confirmOrder" class="net.gupt.ebuy.action.OrderAction" method="confirmOrder">
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+				viewOrder
+			</result>
+		</action>
+		
+		<!-- 查看订单情况 -->
+		<action name="viewOrder" class="net.gupt.ebuy.action.OrderAction" method="viewOrder">
+			<!-- 调用登录验证拦截器，登录成功的用户将才能够查看订单 -->
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- 往action注入分页参数，currentPage当前页为0，pageSize每面记录数为5 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">5</param>
+			<result name="success">
+				/WEB-INF/order/my_order.jsp
+			</result>
+		</action>
+		<!-- 查看订单详细信息 -->
+		<action name="orderDetail" class="net.gupt.ebuy.action.OrderAction" method="orderDetail">
+			<!-- 调用登录验证拦截器，登录成功的用户将才能够查看订单详细信息 -->
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">
+				/WEB-INF/order/my_order_product.jsp
+			</result>
+		</action>
+	</package>
+		
+		
+		
+	<!-- 后台管理配置 -->
+	<package name="admin" extends="json-default" namespace="/">
+		
+		<!-- 管理员登录验证拦截器 -->
+		<interceptors>
+			<interceptor name="adminLoginInterceptor" class="net.gupt.ebuy.interceptor.AdminLoginInterceptor"></interceptor>
+			<!-- 自定义拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<!-- 引用自定义的拦截器 -->
+				<interceptor-ref name="adminLoginInterceptor">
+					<!-- 登录拦截器将拦截后台管理中除adminLogin,checkAdminLogin以外的所有方法 -->
+					<param name="excludeMethods">adminLogin,checkAdminLogin</param>
+				</interceptor-ref>
+				<!-- 引用Struts2默认拦截器栈 -->
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 声明自定义拦截器栈myStack为默认拦截器栈，拦截所有后台请求 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		
+		<!-- 定义全局处理结果 -->
+		<global-results>
+			<result name="validAdminLogin">
+				/WEB-INF/common/valid2.jsp
+			</result>
+		</global-results>
+		
+		<!-- 加载管理员注册页面 -->
+		<action name="adminRegist" class="net.gupt.ebuy.admin.action.AdminAction" method="adminRegist">
+			<result name="success">
+				/WEB-INF/admin/admin_reg.jsp
+			</result>
+		</action>
+		<!-- 提交管理员注册信息 -->
+		<action name="submitAdminRegist" class="net.gupt.ebuy.admin.action.AdminAction" method="submitAdminRegist">
+			<result name="success">
+				/WEB-INF/admin/admin_reg_ok.jsp
+			</result>
+		</action>
+		<!-- 加载管理员登录页面 -->
+		<action name="admin" class="net.gupt.ebuy.admin.action.AdminAction" method="adminLogin">
+			<result name="success">
+				/WEB-INF/admin/admin_login.jsp
+			</result>
+		</action>
+		<!-- 管理员登录验证 -->
+		<action name="checkAdminLogin" class="net.gupt.ebuy.admin.action.AdminAction" method="checkAdminLogin">
+			<!-- 登录成功后，重定向到后台管理页面 -->
+			<result name="success"  type="redirectAction">
+				initAdmin
+			</result>
+			<!-- 登录失败后，重定向到登录页面 -->
+			<result name="fail" type="redirectAction">
+				admin
+			</result>
+		</action>
+		<!-- 管理员登出 -->
+		<action name="adminLogout" class="net.gupt.ebuy.admin.action.AdminAction" method="adminLogout">
+			<!-- 登出后，重定向到登录页面 -->
+			<result name="success" type="redirectAction">
+				admin
+			</result>
+		</action>
+		
+		<!-- 查看所有管理员信息列表页面 -->
+		<action name="viewAdmin" class="net.gupt.ebuy.admin.action.AdminAction" method="viewAdmin">
+			<!-- 往action注入分页参数，currentPage当前页为0，pageSize每面记录数为10 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">10</param>
+			<result name="success">
+				/WEB-INF/admin/admin_all.jsp
+			</result>
+		</action>
+		<!-- 查询管理员信息 -->
+		<action name="queryAdmin" class="net.gupt.ebuy.admin.action.AdminAction" method="queryAdmin">
+			<result name="success">
+				/WEB-INF/admin/admin_select.jsp
+			</result>
+		</action>
+		<!-- 提交管理员查询条件 -->
+		<action name="confirmQueryAdmin" class="net.gupt.ebuy.admin.action.AdminAction" method="confirmQueryAdmin">
+			<result name="success">
+				/WEB-INF/admin/admin_select_result.jsp
+			</result>
+		</action>
+		<!-- 加载管理员信息修改页面 -->
+		<action name="updateAdmin" class="net.gupt.ebuy.admin.action.AdminAction" method="updateAdmin">
+			<result name="success">
+				/WEB-INF/admin/admin_update.jsp
+			</result>
+		</action>
+		<!-- 提交管理员信息变更 -->
+		<action name="confirmUpdateAdmin" class="net.gupt.ebuy.admin.action.AdminAction" method="confirmUpdateAdmin">
+			<result name="success" type="redirectAction">
+				viewAdmin
+			</result>
+		</action>
+		<!-- 删除管理员 -->
+		<action name="deleteAdmin" class="net.gupt.ebuy.admin.action.AdminAction" method="deleteAdmin">
+			<!-- 删除成功后，重定向到管理员列表页面 -->
+			<result name="success" type="redirectAction">
+				viewAdmin
+			</result>
+		</action>
+		
+		<!-- 初始化加载后台管理页面 -->
+		<action name="initAdmin" class="net.gupt.ebuy.admin.action.AdminAction" method="initAdmin">
+			<result name="success">
+				/WEB-INF/admin/admin_index.jsp
+			</result>
+		</action>
+		<!-- 初始化加载后台管理页面 -->
+		<action name="loadCenter" class="net.gupt.ebuy.admin.action.AdminAction" method="loadCenter">
+			<result name="success">
+				/WEB-INF/admin/index1.jsp
+			</result>
+		</action>
+		<!-- 初始化加载后台管理页面，左侧导航栏 -->
+		<action name="loadLeft" class="net.gupt.ebuy.admin.action.AdminAction" method="loadLeft">
+			<result name="success">
+				/WEB-INF/admin/left_menu.jsp
+			</result>
+		</action>
+		
+		<!-- 加载客户信息列表页面 -->
+		<action name="loadRight" class="net.gupt.ebuy.admin.action.AdminAction" method="loadRight">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为6 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">6</param>
+			 <result name="success">
+				/WEB-INF/admin/cust_all.jsp
+			</result>
+		</action>
+		<!-- 查询客户详细信息 -->
+		<action name="viewDetail" class="net.gupt.ebuy.admin.action.CustomerManageAction" method="viewDetail">
+			<result name="success">
+				/WEB-INF/admin/cust_view.jsp
+			</result>
+		</action>
+		<!-- 加载客户搜索页面 -->
+		<action name="searchCust" class="net.gupt.ebuy.admin.action.CustomerManageAction" method="searchCust">
+			<result name="success">
+				/WEB-INF/admin/cust_select.jsp
+			</result>
+		</action>
+		<!-- 提交搜索客户信息的条件 -->
+		<action name="queryCust" class="net.gupt.ebuy.admin.action.CustomerManageAction" method="queryCust">
+			<result name="success">
+				/WEB-INF/admin/cust_view.jsp
+			</result>
+		</action>
+		<!-- 查询客户交易记录 -->
+		<action name="selectOrders" class="net.gupt.ebuy.admin.action.CustomerManageAction" method="selectOrders">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为12 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">12</param>
+			<result name="success">
+				/WEB-INF/admin/cust_select_order.jsp
+			</result>
+		</action>
+		
+		<!-- 加载商品列表页面 -->
+		<action name="viewProduct" class="net.gupt.ebuy.admin.action.ProductManageAction" method="viewProduct">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为5 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">5</param>
+			<result name="success">
+				/WEB-INF/admin/product_all.jsp
+			</result>
+		</action>
+		<!-- 加载更新商品信息页面 -->
+		<action name="updateProduct" class="net.gupt.ebuy.admin.action.ProductManageAction" method="updateProduct">
+			<result name="success">
+				/WEB-INF/admin/product_update.jsp
+			</result>
+		</action>
+		<!-- 提交商品信息更新 -->
+		<action name="confirmUpdate" class="net.gupt.ebuy.admin.action.ProductManageAction" method="confirmUpdate">
+			<!-- 更新成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewProduct
+			</result>
+		</action>
+		<!-- 删除商品信息 -->
+		<action name="deleteProduct" class="net.gupt.ebuy.admin.action.ProductManageAction" method="deleteProduct">
+			<!-- 删除成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewProduct
+			</result>
+		</action>
+		<!-- 加载商品搜索页面 -->
+		<action name="searchProduct" class="net.gupt.ebuy.admin.action.ProductManageAction" method="searchProduct">
+			<result name="success">
+				/WEB-INF/admin/product_select.jsp
+			</result>
+		</action>
+		<!-- 提交商品搜索条件 -->
+		<action name="confirmSearch" class="net.gupt.ebuy.admin.action.ProductManageAction" method="confirmSearch">
+			<result name="success">
+				/WEB-INF/admin/product_select_result.jsp
+			</result>
+		</action>
+		<!-- 加载添加商品页面 -->
+		<action name="addProduct" class="net.gupt.ebuy.admin.action.ProductManageAction" method="addProduct">
+			<result name="success">
+				/WEB-INF/admin/product_add.jsp
+			</result>
+		</action>
+		<!-- 确认添加商品 -->
+		<action name="confirmAdd" class="net.gupt.ebuy.admin.action.ProductManageAction" method="confirmAdd">
+			<!-- 商品添加成功后，重定向到商品列表页面 -->
+			<result name="success" type="redirectAction">
+				viewProduct
+			</result>
+		</action>
+		
+		<!-- 加载公告列表页面 -->
+		<action name="viewNotice" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="viewNotice">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为7 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">7</param>
+			<result name="success">
+				/WEB-INF/admin/notice_all.jsp
+			</result>
+		</action>
+		<!-- 加载公告信息修改页面 -->
+		<action name="updateNotice" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="updateNotice">
+			<result name="success">
+				/WEB-INF/admin/notice_update.jsp
+			</result>
+		</action>
+		<!-- 提交公告信息更新 -->
+		<action name="confirmUpdateNotice" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="confirmUpdateNotice">
+			<!-- 更新成功后，重定向到公告列表页面 -->
+			<result name="success" type="redirectAction">
+				viewNotice
+			</result>
+		</action>
+		<!-- 删除公告 -->
+		<action name="deleteNotice" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="deleteNotice">
+			<!-- 删除成功后，重定向到公告列表页面 -->
+			<result name="success" type="redirectAction">
+				viewNotice
+			</result>
+		</action>
+		<!-- 加载公告发布页面 -->
+		<action name="sendNotice" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="sendNotice">
+			<result name="success">
+				/WEB-INF/admin/notice_send.jsp
+			</result>
+		</action>
+		<!-- 发布公告 -->
+		<action name="confirmSendNotice" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="confirmSendNotice">
+			<!-- 公告发布成功后，重定向到公告列表页面 -->
+			<result name="success" type="redirectAction">
+				viewNotice
+			</result>
+		</action>
+		
+		<!-- 加载意见列表页面 -->
+		<action name="viewMessage" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="viewMessage">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为4 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">4</param>
+			<result name="success">
+				/WEB-INF/admin/cust_message_all.jsp
+			</result>
+		</action>
+		<!-- 加载意见回复页面 -->
+		<action name="replyMessage" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="replyMessage">
+			<result name="success">
+				/WEB-INF/admin/cust_message_return.jsp
+			</result>
+		</action>
+		<!-- 提交意见回复 -->
+		<action name="confirmReplyMessage" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="confirmReplyMessage">
+			<!-- 回复信息提交后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewMessage
+			</result>
+		</action>
+		<!-- 删除意见 -->
+		<action name="deleteMessage" class="net.gupt.ebuy.admin.action.NoticeManageAction" method="deleteMessage">
+			<!-- 删除意见后，重定向到意见列表页面 -->
+			<result name="success" type="redirectAction">
+				viewMessage
+			</result>
+		</action>
+		
+		<!-- 加载支付方式列表页面 -->
+		<action name="viewPayment" class="net.gupt.ebuy.admin.action.PaymentManageAction" method="viewPayment">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为12 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">12</param>
+			<result name="success">
+				/WEB-INF/admin/payment_all.jsp
+			</result>
+		</action>
+		<!-- 加载支付方式修改页面 -->
+		<action name="updatePayment" class="net.gupt.ebuy.admin.action.PaymentManageAction" method="updatePayment">
+			<result name="success">
+				/WEB-INF/admin/payment_view.jsp
+			</result>
+		</action>
+		<!-- 确认修改 -->
+		<action name="confirmUpdatePayment" class="net.gupt.ebuy.admin.action.PaymentManageAction" method="confirmUpdatePayment">
+			<!-- 成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewPayment
+			</result>
+		</action>
+		<!-- 删除支付方式 -->
+		<action name="deletePayment" class="net.gupt.ebuy.admin.action.PaymentManageAction" method="deletePayment">
+			<!-- 成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewPayment
+			</result>
+		</action>
+		<!-- 加载添加支付方式页面 -->
+		<action name="addPayment" class="net.gupt.ebuy.admin.action.PaymentManageAction" method="addPayment">
+			<result name="success">
+				/WEB-INF/admin/payment_add.jsp
+			</result>
+		</action>
+		<!-- 确认添加 -->
+		<action name="confirmAddPayment" class="net.gupt.ebuy.admin.action.PaymentManageAction" method="confirmAddPayment">
+			<!-- 成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewPayment
+			</result>
+		</action>
+		
+		<!-- 加载商品类型列表页面 -->
+		<action name="viewType" class="net.gupt.ebuy.admin.action.TypeManageAction" method="viewType">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为12 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">12</param>
+			<result name="success">
+				/WEB-INF/admin/type_all.jsp
+			</result>
+		</action>
+		<!-- 加载类型修改页面 -->
+		<action name="updateType" class="net.gupt.ebuy.admin.action.TypeManageAction" method="updateType">
+			<result name="success">
+				/WEB-INF/admin/type_update.jsp
+			</result>
+		</action>
+		<!-- 提交商品类型更新信息 -->
+		<action name="confirmUpdateType" class="net.gupt.ebuy.admin.action.TypeManageAction" method="confirmUpdateType">
+			<!-- 成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewType
+			</result>
+		</action>
+		<!-- 删除商品类型 -->
+		<action name="deleteType" class="net.gupt.ebuy.admin.action.TypeManageAction" method="deleteType">
+			<!-- 成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewType
+			</result>
+		</action>
+		<!-- 加载添加商品类型页面 -->
+		<action name="addType" class="net.gupt.ebuy.admin.action.TypeManageAction" method="addType">
+			<!-- 成功后，重定向到列表页面 -->
+			<result name="success">
+				/WEB-INF/admin/type_add.jsp
+			</result>
+		</action>
+		<!-- 确认添加商品类型 -->
+		<action name="confirmAddType" class="net.gupt.ebuy.admin.action.TypeManageAction" method="confirmAddType">
+			<!-- 成功后，重定向到列表页面 -->
+			<result name="success" type="redirectAction">
+				viewType
+			</result>
+		</action>
+		
+		<!-- 加载订单列表页面 -->
+		<action name="queryOrders" class="net.gupt.ebuy.admin.action.OrderManageAction" method="queryOrders">
+			<!-- 向Action中传递分页参数，currentPage当前页码为0，pageSize每页记录数为12 -->
+			<param name="currentPage">0</param>
+			<param name="pageSize">12</param>
+			<result name="success">
+				/WEB-INF/admin/order_all.jsp
+			</result>
+		</action>
+		<!-- 查看订单情况 -->
+		<action name="checkOrder" class="net.gupt.ebuy.admin.action.OrderManageAction" method="checkOrder">
+			<result name="success">
+				/WEB-INF/admin/order_view.jsp
+			</result>
+		</action>
+		<!-- 删除订单 -->
+		<action name="deleteOrder" class="net.gupt.ebuy.admin.action.OrderManageAction" method="deleteOrder">
+			<!-- 订单删除成功后，重定向到订单列表页面 -->
+			<result name="success" type="redirectAction">
+				queryOrders
+			</result>
+		</action>
+		<!-- 查看订单详细信息 -->
+		<action name="verifyOrder" class="net.gupt.ebuy.admin.action.OrderManageAction" method="verifyOrder">
+			<result name="success">
+				/WEB-INF/admin/order_view_product.jsp
+			</result>
+		</action>
+		<!-- 加载订单搜索页面 -->
+		<action name="searchOrder" class="net.gupt.ebuy.admin.action.OrderManageAction" method="searchOrder">
+			<result name="success">
+				/WEB-INF/admin/order_select.jsp
+			</result>
+		</action>
+		<!-- 提交订单搜索条件 -->
+		<action name="confirmSearchOrder" class="net.gupt.ebuy.admin.action.OrderManageAction" method="confirmSearchOrder">
+			<result name="success">
+				/WEB-INF/admin/order_view.jsp
+			</result>
+		</action>
+	</package>
+</struts>

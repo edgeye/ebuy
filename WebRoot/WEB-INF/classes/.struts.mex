@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="customer" location="254,10" size="525,1085">
+    <action name="main" location="310,57" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index_.jsp" />
+      </result>
+    </action>
+    <action name="search" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="select_ok.jsp" />
+      </result>
+    </action>
+    <action name="initReg" location="310,827" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="registry.jsp" />
+      </result>
+    </action>
+    <action name="submitReg" location="310,1002" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="reg_ok.jsp" />
+      </result>
+    </action>
+    <action name="validName" location="65,1003" size="150,40" />
+    <action name="login" location="65,722" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="logout" location="65,617" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="updateInfo" location="65,57" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_update.jsp" />
+      </result>
+    </action>
+    <action name="updateConfirm" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_update_ok.jsp" />
+      </result>
+    </action>
+    <action name="forgetPass" location="310,162" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="forget_pass.jsp" />
+      </result>
+    </action>
+    <action name="initPass" location="310,337" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="forget_pass2.jsp" />
+      </result>
+    </action>
+    <action name="searchPass" location="310,512" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="forget_pass3.jsp" />
+      </result>
+    </action>
+    <action name="initMessage" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="message.jsp" />
+      </result>
+    </action>
+    <action name="submitMessage" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="message2.jsp" />
+      </result>
+    </action>
+    <action name="buyProduct" location="0,0" size="0,0" />
+    <action name="checkCart" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="my_cart.jsp" />
+      </result>
+    </action>
+    <action name="updateQty" location="0,0" size="0,0" />
+    <action name="emptyCart" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="delProduct" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="checkout" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cart_checkout.jsp" />
+      </result>
+    </action>
+    <action name="confirmPay" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="payment.jsp" />
+      </result>
+    </action>
+    <action name="confirmOrder" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="my_order.jsp" />
+      </result>
+    </action>
+    <action name="viewOrder" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="my_order.jsp" />
+      </result>
+    </action>
+    <action name="orderDetail" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="my_order_product.jsp" />
+      </result>
+    </action>
+  </package>
+  <package name="admin" location="0,0" size="0,0">
+    <action name="adminRegist" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_reg.jsp" />
+      </result>
+    </action>
+    <action name="submitAdminRegist" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_reg_ok.jsp" />
+      </result>
+    </action>
+    <action name="admin" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_login.jsp" />
+      </result>
+    </action>
+    <action name="checkAdminLogin" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="fail" />
+    </action>
+    <action name="adminLogout" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="viewAdmin" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_all.jsp" />
+      </result>
+    </action>
+    <action name="queryAdmin" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_select.jsp" />
+      </result>
+    </action>
+    <action name="confirmQueryAdmin" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_select_result.jsp" />
+      </result>
+    </action>
+    <action name="updateAdmin" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_update.jsp" />
+      </result>
+    </action>
+    <action name="confirmUpdateAdmin" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="deleteAdmin" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="initAdmin" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="admin_index.jsp" />
+      </result>
+    </action>
+    <action name="loadCenter" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index1.jsp" />
+      </result>
+    </action>
+    <action name="loadLeft" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="left_menu.jsp" />
+      </result>
+    </action>
+    <action name="loadRight" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_all.jsp" />
+      </result>
+    </action>
+    <action name="viewDetail" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_view.jsp" />
+      </result>
+    </action>
+    <action name="searchCust" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_select.jsp" />
+      </result>
+    </action>
+    <action name="queryCust" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_view.jsp" />
+      </result>
+    </action>
+    <action name="viewProduct" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="product_all.jsp" />
+      </result>
+    </action>
+    <action name="updateProduct" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="product_update.jsp" />
+      </result>
+    </action>
+    <action name="confirmUpdate" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="deleteProduct" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="searchProduct" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="product_select.jsp" />
+      </result>
+    </action>
+    <action name="confirmSearch" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="product_select_result.jsp" />
+      </result>
+    </action>
+    <action name="addProduct" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="product_add.jsp" />
+      </result>
+    </action>
+    <action name="confirmAdd" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="viewNotice" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="notice_all.jsp" />
+      </result>
+    </action>
+    <action name="updateNotice" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="notice_update.jsp" />
+      </result>
+    </action>
+    <action name="confirmUpdateNotice" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="deleteNotice" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="sendNotice" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="notice_send.jsp" />
+      </result>
+    </action>
+    <action name="confirmSendNotice" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="viewMessage" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_message_all.jsp" />
+      </result>
+    </action>
+    <action name="replyMessage" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="cust_message_return.jsp" />
+      </result>
+    </action>
+    <action name="confirmReplyMessage" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="deleteMessage" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="viewPayment" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="payment_all.jsp" />
+      </result>
+    </action>
+    <action name="updatePayment" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="payment_view.jsp" />
+      </result>
+    </action>
+    <action name="confirmUpdatePayment" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="deletePayment" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="addPayment" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="payment_add.jsp" />
+      </result>
+    </action>
+    <action name="confirmAddPayment" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="viewType" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="type_all.jsp" />
+      </result>
+    </action>
+    <action name="updateType" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="type_update.jsp" />
+      </result>
+    </action>
+    <action name="confirmUpdateType" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="deleteType" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="addType" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="type_add.jsp" />
+      </result>
+    </action>
+    <action name="confirmAddType" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="queryOrders" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="order_all.jsp" />
+      </result>
+    </action>
+    <action name="checkOrder" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="order_view.jsp" />
+      </result>
+    </action>
+    <action name="deleteOrder" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="verifyOrder" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="order_view_product.jsp" />
+      </result>
+    </action>
+    <action name="searchOrder" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="order_select.jsp" />
+      </result>
+    </action>
+    <action name="confirmSearchOrder" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="order_view.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="registry.jsp" path="/WEB-INF/regist/registry.jsp" location="825,800" size="150,55" />
+  <webResource name="reg_ok.jsp" path="/WEB-INF/regist/reg_ok.jsp" location="827,975" size="150,55" />
+  <webResource name="index_.jsp" path="/WEB-INF/index/index_.jsp" location="1145,590" size="150,55" />
+  <webResource name="cust_update.jsp" path="/WEB-INF/login/cust_update.jsp" location="9,30" size="150,55" />
+  <webResource name="forget_pass.jsp" path="/WEB-INF/login/forget_pass.jsp" location="815,135" size="150,55" />
+  <webResource name="forget_pass2.jsp" path="/WEB-INF/login/forget_pass2.jsp" location="846,310" size="150,55" />
+  <webResource name="forget_pass3.jsp" path="/WEB-INF/login/forget_pass3.jsp" location="846,485" size="150,55" />
+  <webResource name="cust_update_ok.jsp" path="/WEB-INF/login/cust_update_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="message.jsp" path="/WEB-INF/message/message.jsp" location="0,0" size="0,0" />
+  <webResource name="message2.jsp" path="/WEB-INF/message/message2.jsp" location="0,0" size="0,0" />
+  <webResource name="my_cart.jsp" path="/WEB-INF/cart/my_cart.jsp" location="0,0" size="0,0" />
+  <webResource name="cart_checkout.jsp" path="/WEB-INF/cart/cart_checkout.jsp" location="0,0" size="0,0" />
+  <webResource name="payment.jsp" path="/WEB-INF/payment/payment.jsp" location="0,0" size="0,0" />
+  <webResource name="my_order.jsp" path="/WEB-INF/order/my_order.jsp" location="0,0" size="0,0" />
+  <webResource name="select_ok.jsp" path="/WEB-INF/main/select_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="select_ok.jsp" path="/WEB-INF/index/select_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_index.jsp" path="/WEB-INF/admin/admin_index.jsp" location="0,0" size="0,0" />
+  <webResource name="index1.jsp" path="/WEB-INF/admin/index1.jsp" location="0,0" size="0,0" />
+  <webResource name="left_menu.jsp" path="/WEB-INF/admin/left_menu.jsp" location="0,0" size="0,0" />
+  <webResource name="cust_all.jsp" path="/WEB-INF/admin/cust_all.jsp" location="0,0" size="0,0" />
+  <webResource name="cust_view.jsp" path="/WEB-INF/admin/cust_view.jsp" location="0,0" size="0,0" />
+  <webResource name="cust_select.jsp" path="/WEB-INF/admin/cust_select.jsp" location="0,0" size="0,0" />
+  <webResource name="product_all.jsp" path="/WEB-INF/admin/product_all.jsp" location="0,0" size="0,0" />
+  <webResource name="product_update.jsp" path="/WEB-INF/admin/product_update.jsp" location="0,0" size="0,0" />
+  <webResource name="product_update_ok.jsp" path="/WEB-INF/admin/product_update_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="product_delete.jsp" path="/WEB-INF/admin/product_delete.jsp" location="0,0" size="0,0" />
+  <webResource name="product_select.jsp" path="/WEB-INF/admin/product_select.jsp" location="0,0" size="0,0" />
+  <webResource name="product_select_result.jsp" path="/WEB-INF/admin/product_select_result.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_reg.jsp" path="/WEB-INF/admin/admin_reg.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_reg_ok.jsp" path="/WEB-INF/admin/admin_reg_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_login.jsp" path="/WEB-INF/admin/admin_login.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_all.jsp" path="/WEB-INF/admin/admin_all.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_select.jsp" path="/WEB-INF/admin/admin_select.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_select_result.jsp" path="/WEB-INF/admin/admin_select_result.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_update.jsp" path="/WEB-INF/admin/admin_update.jsp" location="0,0" size="0,0" />
+  <webResource name="admin_update_ok.jsp" path="/WEB-INF/admin/admin_update_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="product_add.jsp" path="/WEB-INF/admin/product_add.jsp" location="0,0" size="0,0" />
+  <webResource name="product_add_ok.jsp" path="/WEB-INF/admin/product_add_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="notice_all.jsp" path="/WEB-INF/admin/notice_all.jsp" location="0,0" size="0,0" />
+  <webResource name="notice_update.jsp" path="/WEB-INF/admin/notice_update.jsp" location="0,0" size="0,0" />
+  <webResource name="notice_update_ok.jsp" path="/WEB-INF/admin/notice_update_ok.jsp" location="0,0" size="0,0" />
+  <webResource name="notice_delete.jsp" path="/WEB-INF/admin/notice_delete.jsp" location="0,0" size="0,0" />
+  <webResource name="notice_send.jsp" path="/WEB-INF/admin/notice_send.jsp" location="0,0" size="0,0" />
+  <webResource name="payment_all.jsp" path="/WEB-INF/admin/payment_all.jsp" location="0,0" size="0,0" />
+  <webResource name="payment_view.jsp" path="/WEB-INF/admin/payment_view.jsp" location="0,0" size="0,0" />
+  <webResource name="payment_update.jsp" path="/WEB-INF/admin/payment_update.jsp" location="0,0" size="0,0" />
+  <webResource name="payment_delete.jsp" path="/WEB-INF/admin/payment_delete.jsp" location="0,0" size="0,0" />
+  <webResource name="payment_add.jsp" path="/WEB-INF/admin/payment_add.jsp" location="0,0" size="0,0" />
+  <webResource name="cust_message_all.jsp" path="/WEB-INF/admin/cust_message_all.jsp" location="0,0" size="0,0" />
+  <webResource name="cust_message_return.jsp" path="/WEB-INF/admin/cust_message_return.jsp" location="0,0" size="0,0" />
+  <webResource name="type_all.jsp" path="/WEB-INF/admin/type_all.jsp" location="0,0" size="0,0" />
+  <webResource name="type_update.jsp" path="/WEB-INF/admin/type_update.jsp" location="0,0" size="0,0" />
+  <webResource name="type_add.jsp" path="/WEB-INF/admin/type_add.jsp" location="0,0" size="0,0" />
+  <webResource name="my_order_product.jsp" path="/WEB-INF/order/my_order_product.jsp" location="0,0" size="0,0" />
+  <webResource name="order_all.jsp" path="/WEB-INF/admin/order_all.jsp" location="0,0" size="0,0" />
+  <webResource name="order_view.jsp" path="/WEB-INF/admin/order_view.jsp" location="0,0" size="0,0" />
+  <webResource name="order_view_product.jsp" path="/WEB-INF/admin/order_view_product.jsp" location="0,0" size="0,0" />
+  <webResource name="order_select.jsp" path="/WEB-INF/admin/order_select.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="net.gupt.ebuy.pojo.OrderDetails" table="OrderDetails">
+		<id name="id" type="java.lang.Integer" column="detail_id">
+			<!-- generator用来指明主键的生成方式  Mysql 数据库一般使用 identity-->
+			<generator class="identity"></generator>
+		</id>
+		<!--<property name="orderId" type="java.lang.Integer" column="order_id"></property>-->
+		<property name="proId" type="java.lang.String" column="p_id"></property>
+		<property name="proName" type="java.lang.String" column="p_name"></property>
+		<property name="proPrice" type="java.lang.Double" column="p_price"></property>
+		<property name="proNumber" type="java.lang.Integer" column="p_number"></property>
+		<property name="proCost" type="java.lang.Double" column="p_cost"></property>
+		<many-to-one name="order" class="net.gupt.ebuy.pojo.Orders" column="order_id"></many-to-one>
+	</class>
+</hibernate-mapping>

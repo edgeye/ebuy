@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="net.gupt.ebuy.pojo.Orders" table="orders">
+		<id name="id" type="java.lang.Integer" column="order_id">
+			<!-- generator用来指明主键的生成方式  Mysql 数据库一般使用 identity-->
+			<generator class="identity"></generator>
+		</id>
+		<property name="itemid" type="java.lang.Integer" column="order_itemid"></property>
+		<property name="payment" type="java.lang.String" column="order_payment"></property>
+		<property name="address" type="java.lang.String" column="order_address"></property>
+		<property name="email" type="java.lang.String" column="order_email"></property>
+		<property name="user" type="java.lang.String" column="order_user"></property>
+		<property name="time" type="java.util.Date" column="order_time"></property>
+		<property name="sum" type="java.lang.Double" column="order_sum"></property>
+		
+		<!-- cascade="all-delete-orphan"表示操作order的同时操作detail -->
+		<!-- inverse="true"表示关联关系由many方负责维护  -->
+		<set name="details" cascade="all-delete-orphan" inverse="true" fetch="join">
+        	<!-- 指定关联的外键字段 -->
+        	<key column="order_id"></key>
+        	<!-- 指明加载关系和对方类型 -->
+        	<one-to-many 
+        		class="net.gupt.ebuy.pojo.OrderDetails"/>
+        </set>
+	</class>
+</hibernate-mapping>

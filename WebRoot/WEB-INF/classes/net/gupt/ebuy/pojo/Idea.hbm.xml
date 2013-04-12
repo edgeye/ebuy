@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="net.gupt.ebuy.pojo.Idea" table="idea">
+		<id name="id" type="java.lang.Integer" column="id">
+			<!-- generator用来指明主键的生成方式  Mysql 数据库一般使用 identity-->
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="java.lang.String" column="c_name"></property>
+		<property name="header" type="java.lang.String" column="c_header"></property>
+		<property name="newMess" type="java.lang.String" column="new_message"></property>
+		<property name="reMess" type="java.lang.String" column="re_message"></property>
+		<property name="newTime" type="java.util.Date" column="new_time"></property>
+		<property name="reTime" type="java.lang.String" column="re_time"></property>
+	</class>
+</hibernate-mapping>
